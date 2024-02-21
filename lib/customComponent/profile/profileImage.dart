@@ -14,8 +14,10 @@ Widget profileSection() {
       } else {
         // Data has been fetched successfully
         List<dynamic> data = snapshot.data ?? [];
+        print(data);
         String? userID = data.isNotEmpty ? data[0] : null;
         String? accessToken = data.isNotEmpty ? data[1] : null;
+        String? uname = data.isNotEmpty ? data[3] : null;
 
         return Container(
           child: Center(
@@ -27,7 +29,7 @@ Widget profileSection() {
                   radius: 50.0,
                 ),
                 SizedBox(height: 20),
-                Text(userID.toString()),
+                Text(uname.toString()),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

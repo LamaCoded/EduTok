@@ -1,3 +1,4 @@
+import 'package:edutok/Controller/StateController/settingState.dart';
 import 'package:edutok/Data/userData.dart';
 import 'package:edutok/Screen/login.dart';
 import 'package:edutok/Screen/updateScreen.dart';
@@ -13,6 +14,7 @@ class settingScreen extends StatelessWidget {
 
   settingScreen({Key? key}) : super(key: key);
   LoginStateController logController = Get.put(LoginStateController());
+  settingState settingStateController = Get.put(settingState());
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +51,21 @@ class settingScreen extends StatelessWidget {
                   return CircularProgressIndicator();
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
-                } else {
-                  int isPrivate = snapshot.data?[2];
+                } else if (snapshot.hasData) {
+                  List<dynamic> data = snapshot.data!;
+                  print("fromsetting:${data}");
+                  int isPrivate = data[2];
+                  if (isPrivate == 0) {
+                    settingStateController.changeToPrivateState.value = true;
+                  } else if (isPrivate != null && isPrivate == 1) {
+                    settingStateController.changeToPrivateState.value = false;
+                  }
                   return customSetting(Icons.shield, "Make Account Private",
                       () {
                     // You can replace this with your logic to handle isPrivat
-                  }, null, null, isPrivate);
+                  }, null, null);
+                } else {
+                  return Center(child: CircularProgressIndicator());
                 }
               },
             ),

@@ -170,13 +170,13 @@ class _VideoPlayerForPreviewState extends State<VideoPlayerForPreview> {
 
   Future<void> uploadFile(String title, String overview, String tagline) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String accessToken = prefs.getString('token')!;
-
-    print("AccessToken:${accessToken}");
-
-    print("VideoPath:${widget.videoPath}");
 
     try {
+      String accessToken = prefs.getString('token')!;
+
+      print("AccessToken:${accessToken}");
+
+      print("VideoPath:${widget.videoPath}");
       String apiUrl = 'http://${basepath}:4000/newvideo';
       String original_title = title;
       String Overview = overview;
@@ -195,6 +195,7 @@ class _VideoPlayerForPreviewState extends State<VideoPlayerForPreview> {
       dio.Response response = await dioInstance.post(apiUrl, data: formData);
 
       print('Response: ${response.data}');
+      Get.dialog(AlertDialog(title: Text("success")));
     } catch (e) {
       Get.dialog(
         AlertDialog(

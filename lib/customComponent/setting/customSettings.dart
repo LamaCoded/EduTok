@@ -2,10 +2,15 @@ import 'package:edutok/Controller/StateController/settingState.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-Widget customSetting(IconData leadingIcon, String title, Function func,
-    [IconData? trailing, String? subtitle, int? isPrivate]) {
+Widget customSetting(
+  IconData leadingIcon,
+  String title,
+  Function func, [
+  IconData? trailing,
+  String? subtitle,
+]) {
   // Provide a default value for subtitle
-  final settingState settingStateController = Get.put(settingState(isPrivate));
+  final settingState settingStateController = Get.put(settingState());
   return ListTile(
       leading: Icon(leadingIcon),
       onTap: () => func(),

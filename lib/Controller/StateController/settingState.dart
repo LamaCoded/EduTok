@@ -5,10 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../Data/Path.dart';
 
 class settingState extends GetxController {
-  settingState(this.isPrivate) {
-    changeToPrivateState.value = isPrivate == 1 ? false : true;
-  }
-
   RxBool deleteAccountState = false.obs;
   int? isPrivate;
   RxBool changeToPrivateState = false.obs;

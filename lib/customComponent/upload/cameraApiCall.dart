@@ -151,7 +151,8 @@ class _CameraApiCallState extends State<CameraApiCall> {
     }
 
     return Center(
-      child: CircularProgressIndicator(backgroundColor: Colors.white),
+      child: Center(
+          child: CircularProgressIndicator(backgroundColor: Colors.white)),
     );
   }
 
@@ -168,7 +169,7 @@ class _CameraApiCallState extends State<CameraApiCall> {
       print('****************');
       Get.to(VideoPlayerForPreview(file.path!, file.name));
     } else {
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator());
     }
   }
 

@@ -32,19 +32,28 @@ class UserController {
       dynamic response = await dio.post('http://${basepath}:4000/login',
           data: {'user_id': email, 'password': password});
       print(response.data);
+      Map<String, dynamic> data = response.data['0'];
+      print("uid:$data['user_id']");
+      print("uname:$data['username']");
+
+      print("uid:$data['is_private']");
+
+      print("uid:$data['accessToken']");
+
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      var data = response.data;
+
       await prefs.setString('token', data['accessToken']);
       await prefs.setString('userId', data['user_id']);
-      await prefs.setInt('isPrivate', data['private']);
+      await prefs.setInt('isPrivate', data['is_private']);
+      await prefs.setString('username', data['username']);
 
       if (prefs.getString('token') != null &&
           prefs.getString('userId') != null) {
         loginController.loginStateUpdate();
-        loginController.loginState == true
-            ? Get.to(Profile())
-            : Get.dialog(AlertDialog(title: Text("try again")));
       }
+      loginController.loginState == true
+          ? Get.to(Profile())
+          : Get.dialog(AlertDialog(title: Text("try again")));
     } catch (e) {
       if (e is SocketException) {
         Get.off(Login());

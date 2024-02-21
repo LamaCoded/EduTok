@@ -6,6 +6,7 @@ class UserData {
     String userID = prefs.getString('userId')!;
     String acessToken = prefs.getString('token')!;
     int isPrivate = prefs.getInt('isPrivate')!;
-    return [userID, acessToken, isPrivate];
+    String username = prefs.getString('username')!;
+    return [userID, acessToken, isPrivate, username];
   }
 }

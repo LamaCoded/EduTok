@@ -56,6 +56,7 @@ class _yourVideosState extends State<yourVideos>
                   Expanded(
                     // Add Expanded widget here
                     child: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
                       children: [
                         videoGrid(context, tabData),
                         videoGrid(context, tabData)
