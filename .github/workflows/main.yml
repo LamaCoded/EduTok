@@ -42,3 +42,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Start release build
         run: flutter build appbundle --release
+
+      #build release
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/bundle/release/app.aab"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}
